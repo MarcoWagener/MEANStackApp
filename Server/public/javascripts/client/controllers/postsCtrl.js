@@ -2,19 +2,15 @@
 	'use-strict';
 
 	angular.module('flapperNews')
-		.controller('postsCtrl', ['$stateParams', 'postService', postsCtrl]);
+		.controller('postsCtrl', ['postService', 'postPromise', postsCtrl]);
 
-	function postsCtrl($stateParams, postService) {
+	function postsCtrl(postService, postPromise) {
 		var vm = this;		
 
 		vm.comment = '';
 		vm.author = '';
 
-		postService
-			.getPost($stateParams.id)
-			.success(function(data){
-				vm.post = data;
-			});
+		vm.post = postPromise.data;
 
 		vm.addComment = function(post) {
 			postService
