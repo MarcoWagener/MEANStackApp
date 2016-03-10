@@ -13,9 +13,14 @@ var mongoose = require('mongoose');
 //Register models.
 require('./models/Posts');
 require('./models/Comments');
+require('./models/User');
 
 //Connect to mongodb.
 mongoose.connect('mongodb://localhost/news');
+
+//Passport Config
+var passport = require('passport');
+require('./config/passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -34,6 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+
+//Passport
+app.use(passport.initialize());
 
 // app.route('/')
 //   .get(function(req, res){
