@@ -2,9 +2,9 @@
 	'use-strict';
 
 	angular.module('flapperNews')
-		.controller('mainCtrl', ['postService', '$scope', 'postsPromise', mainCtrl]);
+		.controller('mainCtrl', ['postService', '$scope', 'postsPromise', '$state', mainCtrl]);
 
-	function mainCtrl(postService, $scope, postsPromise) {
+	function mainCtrl(postService, $scope, postsPromise, $state) {
 		var vm = this;
 
 		vm.title = '';
